@@ -22,6 +22,7 @@ $config = [
         ],
         'db' => $db,
     ],
+    'defaultRoute' => 'auth',
     'params' => $params,
     /*
     'controllerMap' => [

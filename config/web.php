@@ -49,6 +49,7 @@ $config = [
             ],
         ],
     ],
+    'defaultRoute' => 'auth',
     'params' => $params,
 ];
 
