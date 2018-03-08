@@ -1,6 +1,22 @@
 .wrap {
     background-color: #0f0f0f;
-}/*
+}
+
+#index-row {
+    background-color: white;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#quote {
+    padding-left: 60px;
+    padding-right: 60px;
+    text-indent: 15px;
+    text-align: justify;
+    font-family: Pristina, "Rage Italic", "Script MT Bold";
+}
+/*color: #aa8f55;
 body {
     font: 400 15px/1.8 Lato, sans-serif;
     color: #777;

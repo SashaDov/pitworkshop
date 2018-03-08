@@ -63,7 +63,7 @@ AppAsset::register($this);
 <div class="wrap">
 <?php
 NavBar::begin([
-    'brandLabel' => 'Pit`s studio',
+    'brandLabel' => 'Peter`s studio',
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-default navbar-fixed-top',
@@ -115,45 +115,46 @@ NavBar::end();
     </div>
 </div>
 <!-- Footer -->
+
 <footer class="text-center">
+    <div class="container">
     <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br><br>
     <div class="row">
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <ul>
-                <li>Печатка картинка</li>
-                <li><span class="glyphicon glyphicon-map-marker"></span>Moskow, RU</li>
-                <li><span class="glyphicon glyphicon-phone"></span>Phone: +7 926 644 83 66 </li>
-                <li><span class="glyphicon glyphicon-envelope"></span>Email: info@pitstudio.com</li>
-                <li>vk, instagram buttons</li>
+                <!--<li>Печатка картинка</li>-->
+                <li><span class="glyphicon glyphicon-map-marker"></span> Moskow, RU</li>
+                <li><span class="glyphicon glyphicon-phone"></span> Phone: +7 926 644 83 66 </li>
+                <li><span class="glyphicon glyphicon-envelope"></span> Email: info@pitstudio.com</li>
+                <li>Ярмарка мастеров</li>
+                <li>
+
+                  <?php
+                    echo Html::img("/img/vk.png");
+                    ?>
+                    vk, instagram buttons
+                </li>
             </ul>
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <?php
             $items = [
-                'Biography',
-                'Gid Stidio',
-                'Contact',
-                'Delivery',
-                'Order',
-                'Promo'
+                'Contacts' => '/info/index.php',
+                'Biography' => '/info/biography.php',
+                'Studio`s map' => '/info/map.php',
+                'Delivery' => '/info/delivery.php',
+                'Order' => '/info/order.php',
+                'Promo' => '/info/promo.php',
             ];
             echo Html::ul($items, ['item' => function ($item, $index) {
-                //$link = Html::a($item, $item->siteUrl);
-                return "<li><span class=\"glyphicon glyphicon-map-marker\"></span>{$item}</li>";
+                $link = Html::a($index, $item);
+                return "<li>{$link}</li>";
             }]);
-//            echo Html::ul([
-//                   'Biography',
-//                    'Gid Stidio',
-//                    'Contact',
-//                'Delivery',
-//                'Order',
-//                'Promo'
-//                ]);
             ?>
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <?php
             echo Html::ul([
                 'Вязаное',
@@ -164,7 +165,7 @@ NavBar::end();
             ]);
             ?>
         </div>
-        <div class="col-sm-3">
+        <div class="col-xs-3">
             <?php
             echo Html::ul([
                 'Изотерика',
@@ -176,8 +177,9 @@ NavBar::end();
             ?>
         </div>
     </div>
-    <p>&copy; <a href="https://www.pitstudio.com" data-toggle="tooltip" title="Visit Pit`s studio">Pit`s studio </a>
+    <p>&copy; <a href="https://www.pitworkshop.com" data-toggle="tooltip" title="Visit Peter`s studio">Peter`s studio </a>
     <?php echo date('Y'); ?></p>
+    </div>
 </footer>
 
 

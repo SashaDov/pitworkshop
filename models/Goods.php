@@ -11,11 +11,16 @@ class Goods extends ActiveRecord
      */
     public $imageFile;
 
+    public static function tableName()
+    {
+        return '{{goods}}';
+    }
+
     public function rules()
     {
         return [
             [['title', 'alias', 'description', 'materials', 'tags', 'service_recomendation', 'size'], 'string'],
-            [['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
             [['category', 'chapter', 'work_duration'], 'integer'],
             [['price'], 'double'],
             [['date_start', 'date_end', 'date_order'], 'date', 'format' => 'php:Y-m-d'],

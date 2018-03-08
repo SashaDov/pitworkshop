@@ -161,6 +161,11 @@ a.desc:after {
 .dropdown-menu li a:hover {
     background-color: red !important;
 }
+
+/*
+footer area
+ */
+
 /*footer {
     background-color: #2d2d30;
     color: #f5f5f5;
@@ -169,10 +174,15 @@ a.desc:after {
 footer a {
     color: #f5f5f5;
 }
+
 footer a:hover {
     color: #777;
     text-decoration: none;
 }
+footer > ul > li > img {
+
+}
+
 .form-control {
     border-radius: 0;
 }
@@ -181,7 +191,7 @@ textarea {
 }
 
 h3, h4 {
-    font-size: 10px;
+    font-size: 14px;
     color: #111;
 }
 /*.carousel-inner > .item > img {
