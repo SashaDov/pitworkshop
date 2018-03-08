@@ -63,12 +63,13 @@ AppAsset::register($this);
 <div class="wrap">
 <?php
 NavBar::begin([
-    'brandLabel' => 'Peter`s studio',
+    'brandLabel' => 'Peter`s studio', //. Html::img('/img/icons/img_fonts', ['class' => 'head-stamp']),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-default navbar-fixed-top',
     ],
 ]);
+$img = Html::img('/img/icons/img_fonts', ['class' => 'head-stamp']);
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
@@ -92,18 +93,19 @@ echo Nav::widget([
                 ['label' => 'Вне категории', 'url' => '#'],
             ],
         ],
-        Yii::$app->user->isGuest ? (
-        ['label' => 'Login', 'url' => ['/auth/login']]
-        ) : (
-            '<li>'
-            . Html::beginForm(['/auth/logout'], 'post')
-            . Html::submitButton(
-                'Logout (' . Yii::$app->user->identity->username . ')',
-                ['class' => 'btn btn-link logout']
-            )
-            . Html::endForm()
-            . '</li>'
-        )
+        ['label' => 'H-ST'],
+//        Yii::$app->user->isGuest ? (
+//        ['label' => 'Login', 'url' => ['/auth/login']]
+//        ) : (
+//            '<li>'
+//            . Html::beginForm(['/auth/logout'], 'post')
+//            . Html::submitButton(
+//                'Logout (' . Yii::$app->user->identity->username . ')',
+//                ['class' => 'btn btn-link logout']
+//            )
+//            . Html::endForm()
+//            . '</li>'
+//        )
     ],
 ]);
 NavBar::end();
@@ -122,7 +124,7 @@ NavBar::end();
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br><br>
     <div class="row">
-        <div class="col-xs-3">
+        <div class="col-sm-4">
             <ul>
                 <!--<li>Печатка картинка</li>-->
                 <li><span class="glyphicon glyphicon-map-marker"></span> Moskow, RU</li>
@@ -130,15 +132,29 @@ NavBar::end();
                 <li><span class="glyphicon glyphicon-envelope"></span> Email: info@pitstudio.com</li>
                 <li>Ярмарка мастеров</li>
                 <li>
-
-                  <?php
-                    echo Html::img("/img/vk.png");
+                    <?php
+                    echo Html::img("/img/icons/vk.png", ['class' => 'img-icons-links']);
+                    echo Html::img("/img/icons/fc.png", ['class' => 'img-icons-links']);
+                    echo Html::img("/img/icons/tw.png", ['class' => 'img-icons-links']);
+                    echo Html::img("/img/icons/ig.png", ['class' => 'img-icons-links']);
                     ?>
-                    vk, instagram buttons
+                </li>
+                <li>
+                <?php
+                if (Yii::$app->user->isGuest) {
+                    echo Html::a('Login', '/auth/login');
+                } else {
+                    echo Html::beginForm(['/auth/logout'], 'post');
+                    echo Html::submitButton(
+                        'Logout (' . Yii::$app->user->identity->username . ')',
+                        ['class' => 'btn btn-link logout']);
+                    echo Html::endForm();
+                }
+                ?>
                 </li>
             </ul>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-4">
             <?php
             $items = [
                 'Contacts' => '/info/index.php',
@@ -147,6 +163,8 @@ NavBar::end();
                 'Delivery' => '/info/delivery.php',
                 'Order' => '/info/order.php',
                 'Promo' => '/info/promo.php',
+                'For Fans' => '/goods/for-fans.php',
+                'For SALE' => '/goods/for-sale.php',
             ];
             echo Html::ul($items, ['item' => function ($item, $index) {
                 $link = Html::a($index, $item);
@@ -154,29 +172,29 @@ NavBar::end();
             }]);
             ?>
         </div>
-        <div class="col-xs-3">
+        <div class="col-sm-4">
             <?php
             echo Html::ul([
                 'Вязаное',
                 'Книги',
                 'Софтбуки',
                 'Сумки',
-                'Пеналы'
-            ]);
-            ?>
-        </div>
-        <div class="col-xs-3">
-            <?php
-            echo Html::ul([
+                'Пеналы',
                 'Изотерика',
                 'Научно-публицистическое',
                 'Сувениры и подарки',
-                'For Fans',
-                'For SALE'
             ]);
             ?>
         </div>
+<!--        <div class="col-md-3">-->
+<!--            --><?php
+//            echo Html::ul([
+//
+//            ]);
+//            ?>
+<!--        </div>-->
     </div>
+        <br>
     <p>&copy; <a href="https://www.pitworkshop.com" data-toggle="tooltip" title="Visit Peter`s studio">Peter`s studio </a>
     <?php echo date('Y'); ?></p>
     </div>

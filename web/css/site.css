@@ -104,13 +104,24 @@ a.desc:after {
     margin: 0 0 15px 0;
 }
 
+/*NAV*/
+
 /* align the logout "link" (button in form) of the navbar */
+.head-stamp {
+    width: 50px;
+    height: 30px;
+}
+
 .nav li > form > button.logout {
     padding: 15px;
     border: none;
 }
 
 @media(max-width:767px) {
+    .navbar-nav.navbar-right.nav > li > ul{
+        background-color: white;
+    }
+
     .nav li > form > button.logout {
         display:block;
         text-align: left;
@@ -179,8 +190,9 @@ footer a:hover {
     color: #777;
     text-decoration: none;
 }
-footer > ul > li > img {
-
+.img-icons-links {
+    width: 30px;
+    height: 30px;
 }
 
 .form-control {
