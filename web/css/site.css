@@ -232,3 +232,13 @@ h3, h4 {
 .container-fluid {
     padding: 60px 0px;
 }
+
+
+/** asset goods*/
+.goods-one-block-for-good {
+    border-color: white;
+    border-width: medium;
+    font-size: smaller;
+    text-align: center;
+
+}

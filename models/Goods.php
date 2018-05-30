@@ -20,7 +20,7 @@ class Goods extends ActiveRecord
     {
         return [
             [['title', 'alias', 'description', 'materials', 'tags', 'service_recomendation', 'size'], 'string'],
-            //[['imageFile'], 'file', 'skipOnEmpty' => false, 'extensions' => 'png, jpg'],
+            [['imageFile'], 'file', 'extensions' => 'png, jpg'],
             [['category', 'chapter', 'work_duration'], 'integer'],
             [['price'], 'double'],
             [['date_start', 'date_end', 'date_order'], 'date', 'format' => 'php:Y-m-d'],
@@ -32,11 +32,19 @@ class Goods extends ActiveRecord
 
     public function upload()
     {
-        if ($this->validate()) {
-            $this->imageFile->saveAs('/img/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+        if ($this->imageFile instanceof UploadedFile) {
+            $this->imageFile->saveAs('img/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
             return true;
         } else {
             return false;
         }
+    }
+
+    public function save($runValidation = true, $attributeNames = null)
+    {
+        $this->upload();
+            //var_dump('dfasfasfas');die;
+
+        return parent::save($runValidation, $attributeNames);
     }
 }
