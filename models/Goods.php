@@ -1,15 +1,21 @@
 <?php
 namespace app\models;
 
+use app\common\AppModel;
 use yii\db\ActiveRecord;
 use yii\web\UploadedFile;
 
-class Goods extends ActiveRecord
+class Goods extends AppModel
 {
     /**
-     * @var UploadedFile
+     * @var
      */
-    public $imageFile;
+    public $records;
+    /**
+     * @var UploadedFile[]
+     */
+    public $documents;
+
 
     public static function tableName()
     {
@@ -20,31 +26,50 @@ class Goods extends ActiveRecord
     {
         return [
             [['title', 'alias', 'description', 'materials', 'tags', 'service_recomendation', 'size'], 'string'],
-            [['imageFile'], 'file', 'extensions' => 'png, jpg'],
+            [['documents'], 'file', 'skipOnEmpty' => false, 'extensions' => 'doc, docx, jpg, png, pdf', 'maxFiles' => 7],
             [['category', 'chapter', 'work_duration'], 'integer'],
             [['price'], 'double'],
             [['date_start', 'date_end', 'date_order'], 'date', 'format' => 'php:Y-m-d'],
             [['date_start', 'date_end', 'date_order'], 'default', 'value' => date('Y-m-d')],
             [['alias'], 'unique'],
-            [['title', 'alias', 'category', 'chapter'], 'required'],
+            [['alias', 'category', 'chapter'], 'required'],
+            [['records'], 'validateRecords'],
         ];
     }
 
-    public function upload()
+    public function validateRecords($attribute)
     {
-        if ($this->imageFile instanceof UploadedFile) {
-            $this->imageFile->saveAs('img/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-            return true;
-        } else {
-            return false;
+        foreach ($this->{$attribute} as $record) {
+            if(!is_string($record)) {
+                return false;
+            }
         }
+        return true;
     }
 
-    public function save($runValidation = true, $attributeNames = null)
+    public function attributeLabels()
     {
-        $this->upload();
-            //var_dump('dfasfasfas');die;
-
-        return parent::save($runValidation, $attributeNames);
+        return [
+            'title' => \Yii::t('app', 'Title'),
+            'description' => \Yii::t('app', 'Description'),
+        ];
     }
+
+//    public function upload()
+//    {
+//        if ($this->imageFile instanceof UploadedFile) {
+//            $this->imageFile->saveAs('img/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
+//            return true;
+//        } else {
+//            return false;
+//        }
+//    }
+
+//    public function save($runValidation = true, $attributeNames = null)
+//    {
+//        $this->upload();
+//            //var_dump('dfasfasfas');die;
+//
+//        return parent::save($runValidation, $attributeNames);
+//    }
 }

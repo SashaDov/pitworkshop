@@ -13,7 +13,7 @@ class m180102_203159_create_goods_table extends Migration
     public function safeUp()
     {
         $this->createTable('goods', [
-            'id' => $this->primaryKey(),
+            'uuid' => $this->string(36)->notNull()->unique(),
             'title' => $this->string(),
             'alias' => $this->string(),//for image
             'category' => $this->smallInteger(),

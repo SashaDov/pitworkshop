@@ -63,13 +63,12 @@ AppAsset::register($this);
 <div class="wrap">
 <?php
 NavBar::begin([
-    'brandLabel' => 'Peter`s studio', //. Html::img('/img/icons/img_fonts', ['class' => 'head-stamp']),
+    'brandLabel' => 'Pit`s Studio',//Html::img('/img/icons/ps_white.png', ['class' => 'head-stamp']),
     'brandUrl' => Yii::$app->homeUrl,
     'options' => [
         'class' => 'navbar-default navbar-fixed-top',
     ],
 ]);
-$img = Html::img('/img/icons/img_fonts', ['class' => 'head-stamp']);
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
@@ -93,19 +92,10 @@ echo Nav::widget([
                 ['label' => 'Вне категории', 'url' => '#'],
             ],
         ],
-        ['label' => 'H-ST'],
-//        Yii::$app->user->isGuest ? (
-//        ['label' => 'Login', 'url' => ['/auth/login']]
-//        ) : (
-//            '<li>'
-//            . Html::beginForm(['/auth/logout'], 'post')
-//            . Html::submitButton(
-//                'Logout (' . Yii::$app->user->identity->username . ')',
-//                ['class' => 'btn btn-link logout']
-//            )
-//            . Html::endForm()
-//            . '</li>'
-//        )
+        [
+            'label' => strtoupper(Yii::$app->language),
+            'items' => \app\widgets\LanguageDropdown::widget(),
+        ],
     ],
 ]);
 NavBar::end();
@@ -123,26 +113,30 @@ NavBar::end();
     <a class="up-arrow" href="#myPage" data-toggle="tooltip" title="TO TOP">
         <span class="glyphicon glyphicon-chevron-up"></span>
     </a><br><br>
-    <div class="row">
+    <div class="row" style="text-align: start;">
         <div class="col-sm-4">
             <ul>
-                <!--<li>Печатка картинка</li>-->
-                <li><span class="glyphicon glyphicon-map-marker"></span> Moskow, RU</li>
-                <li><span class="glyphicon glyphicon-phone"></span> Phone: +7 926 644 83 66 </li>
-                <li><span class="glyphicon glyphicon-envelope"></span> Email: info@pitstudio.com</li>
-                <li>Ярмарка мастеров</li>
                 <li>
                     <?php
-                    echo Html::img("/img/icons/vk.png", ['class' => 'img-icons-links']);
-                    echo Html::img("/img/icons/fc.png", ['class' => 'img-icons-links']);
-                    echo Html::img("/img/icons/tw.png", ['class' => 'img-icons-links']);
-                    echo Html::img("/img/icons/ig.png", ['class' => 'img-icons-links']);
+                    echo Html::img('/img/icons/ps_white.png', ['class' => 'head-stamp']);
+                    ?>
+                </li>
+                <li><span class="glyphicon glyphicon-map-marker"></span> Moskow, RU</li>
+                <li><span class="glyphicon glyphicon-phone"></span> Phone: +7 926 644 83 66 </li>
+                <li><span class="glyphicon glyphicon-envelope"></span> Email: info@pitworkshop.com</li>
+                <li>
+                    <?php
+                    echo Html::a(Html::img("/img/icons/vk.png", ['class' => 'img-icons-links']), 'https://vk.com/pits_studio', ['target' => 'blank']);
+                    echo Html::a(Html::img("/img/icons/fc.png", ['class' => 'img-icons-links']), '#', ['target' => 'blank']);
+                    echo Html::a(Html::img("/img/icons/lm.png", ['class' => 'img-icons-links']), 'https://www.livemaster.ru/pitsstudio', ['target' => 'blank']);
+                    echo Html::a(Html::img("/img/icons/tw.png", ['class' => 'img-icons-links']), 'https://twitter.com/Pit_Cogger', ['target' => 'blank']);
+                    echo Html::a(Html::img("/img/icons/ig.png", ['class' => 'img-icons-links']), 'https://www.instagram.com/_w_pit_/', ['target' => 'blank']);
                     ?>
                 </li>
                 <li>
                 <?php
                 if (Yii::$app->user->isGuest) {
-                    echo Html::a('Login', '/auth/login');
+                    echo ''; //Html::a('Login', '/auth/login');
                 } else {
                     echo Html::beginForm(['/auth/logout'], 'post');
                     echo Html::submitButton(
@@ -157,14 +151,14 @@ NavBar::end();
         <div class="col-sm-4">
             <?php
             $items = [
-                'Contacts' => '/info/index.php',
-                'Biography' => '/info/biography.php',
-                'Studio`s map' => '/info/map.php',
-                'Delivery' => '/info/delivery.php',
-                'Order' => '/info/order.php',
-                'Promo' => '/info/promo.php',
-                'For Fans' => '/goods/for-fans.php',
-                'For SALE' => '/goods/for-sale.php',
+                'Contacts' => '#',//'/info/index.php',
+                'Biography' => '#',//'/info/biography.php',
+                'Studio`s map' => '#',//'/info/map.php',
+                'Delivery' => '#',//'/info/delivery.php',
+                'Order' => '#',//'/info/order.php',
+                'Promo' => '#',//'/info/promo.php',
+                'For Fans' => '#',//'/goods/for-fans.php',
+                'For SALE' => '#',//'/goods/for-sale.php',
             ];
             echo Html::ul($items, ['item' => function ($item, $index) {
                 $link = Html::a($index, $item);
@@ -180,7 +174,7 @@ NavBar::end();
                 'Софтбуки',
                 'Сумки',
                 'Пеналы',
-                'Изотерика',
+                'Эзотерика',
                 'Научно-публицистическое',
                 'Сувениры и подарки',
             ]);
@@ -195,7 +189,7 @@ NavBar::end();
 <!--        </div>-->
     </div>
         <br>
-    <p>&copy; <a href="https://www.pitworkshop.com" data-toggle="tooltip" title="Visit Peter`s studio">Peter`s studio </a>
+    <p>&copy; <a href="https://www.pitworkshop.com" data-toggle="tooltip" title="Visit Pit`s studio">Pit`s studio </a>
     <?php echo date('Y'); ?></p>
     </div>
 </footer>

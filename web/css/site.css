@@ -108,8 +108,9 @@ a.desc:after {
 
 /* align the logout "link" (button in form) of the navbar */
 .head-stamp {
-    width: 50px;
-    height: 30px;
+    width: 240px;
+    height: 60px;
+    margin-bottom: 20px;
 }
 
 .nav li > form > button.logout {

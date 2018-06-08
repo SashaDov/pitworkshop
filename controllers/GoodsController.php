@@ -1,7 +1,9 @@
 <?php
 namespace app\controllers;
 
+use app\models\File;
 use app\models\Goods;
+use app\models\Lang;
 use yii\data\Pagination;
 use yii\web\Controller;
 use Yii;
@@ -16,7 +18,7 @@ class GoodsController extends Controller
         $query = Goods::find();
         $countQuery = clone $query;
         $pagination = new Pagination([
-            'defaultPageSize' => 6,
+            'defaultPageSize' => 2,
             'totalCount' => $countQuery->count(),
         ]);
 
@@ -34,36 +36,30 @@ class GoodsController extends Controller
 
     public function actionCreate()
     {
-        $model = new Goods();
-        if (Yii::$app->request->isPost) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            //var_dump($model->imageFile);
-//            if ($model->upload()) {
-//                //
-//                return 'file is uploaded successfully';
-//            }
-        $model->load(Yii::$app->request->post());
-
-        if($model->save()) {
-                return $this->redirect(['goods/index']);
-            } else {
-                return $this->render('create', ['goods_model' => $model]);
+        $goods = new Goods();
+        if (\Yii::$app->request->isPost) {
+            $data = \Yii::$app->request->getBodyParams();
+            if ($goods->load($data)) {
+                $goods->validate();
+                foreach ($goods->records as $key => $record) {
+                    $lang = new Lang();
+                    $id = $lang->record($key, $record);
+                    $goods->{$key} = $id;
+                }
+                $files = UploadedFile::getInstances($goods, 'documents');
+                if ($files) {
+                    foreach ($files as $file) {
+                        $fileModel = new File();
+                        $fileModel->upload($file, $goods->uuid, $goods::getTableSchema()->name);
+                    }
+                }
+                $goods->save(false);
+                    return $this->refresh();
             }
         }
-        return $this->render('create', ['goods_model' => $model]);
-
-    }
-
-    public function actionUpload()
-    {
-        $model = new Goods();
-        if (Yii::$app->request->isPost) {
-            $model->imageFile = UploadedFile::getInstance($model, 'imageFile');
-            if ($model->upload()) {
-                return $this->redirect(['goods/index']);
-            }
-        }
-        return $this->render('upload', ['goods_model' => $model]);
+        return $this->render('create', [
+            'goods_model' => $goods,
+        ]);
     }
 
     public function actionShow($id)
