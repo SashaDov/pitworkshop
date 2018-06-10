@@ -15,17 +15,16 @@ use app\models\Login;
 
 class AuthController extends Controller
 {
-/*
     public function behaviors()
     {
         return [
             'access' => [
-                'class' => AccessControl::className(),
-                'only' => ['login', 'logout', 'signup'],
+                'class' => AccessControl::class,
+                'only' => ['login', 'logout'],
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login', 'signup'],
+                        'actions' => ['login'],
                         'roles' => ['?'],
                     ],
                     [
@@ -36,7 +35,8 @@ class AuthController extends Controller
                 ],
             ],
         ];
-    }*/
+    }
+
     public $layout = 'master';
 
     /**

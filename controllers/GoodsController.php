@@ -5,6 +5,7 @@ use app\models\File;
 use app\models\Goods;
 use app\models\Lang;
 use yii\data\Pagination;
+use yii\filters\AccessControl;
 use yii\web\Controller;
 use Yii;
 use yii\web\UploadedFile;
@@ -13,12 +14,30 @@ class GoodsController extends Controller
 {
     public $layout = 'master';
 
+    public function behaviors()
+    {
+        return [
+            'access' => [
+                'class' => AccessControl::class,
+                'only' => ['create'],
+                'rules' => [
+                    [
+                        'allow' => true,
+                        'actions' => ['create'],
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
+        ];
+    }
+
+
     public function actionIndex()
     {
         $query = Goods::find();
         $countQuery = clone $query;
         $pagination = new Pagination([
-            'defaultPageSize' => 2,
+            'defaultPageSize' => 6,
             'totalCount' => $countQuery->count(),
         ]);
 
@@ -31,7 +50,6 @@ class GoodsController extends Controller
             'links' => $links,
             'pagination' => $pagination,
         ]);
-        //return $this->render('index');
     }
 
     public function actionCreate()
@@ -64,11 +82,9 @@ class GoodsController extends Controller
 
     public function actionShow($id)
     {
-        echo $id;
-        //$id = 5;
-        //$id = Yii::$app->request->get('id');
-        var_dump($id);die();
-        $model = Goods::findOne($param);
-        return $this->render('show', ['model' => $model]);
+        $model = Goods::findOne($id);
+        $files = $model->files;
+//        $langs = $model->langs;
+        return $this->render('show', ['model' => $model, 'files' => $files]);
     }
 }

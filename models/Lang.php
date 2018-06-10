@@ -12,8 +12,8 @@ class Lang extends AppModel
     public function rules()
     {
         return [
-            [['uuid'], 'required'],
-            [['uuid', 'entity_type', 'en', 'ru', 'de', 'fr'], 'string'],
+            [['id'], 'required'],
+            [['id', 'entity_type', 'en', 'ru', 'de', 'fr'], 'string'],
         ];
     }
 
@@ -23,6 +23,6 @@ class Lang extends AppModel
         $this->{$language} = $record;
         $this->entity_type = $key;
         $this->save();
-        return $this->uuid;
+        return $this->id;
     }
 }

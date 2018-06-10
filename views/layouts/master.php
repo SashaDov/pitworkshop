@@ -72,11 +72,19 @@ NavBar::begin([
 echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
-        ['label' => 'Biography', 'url' => ['/site/index']],
-        ['label' => 'Materials', 'url' => ['/opportunities/index']],
+            [
+                'label' => 'About',
+                'items' => [
+                    ['label' => 'Contacts', 'url' => ['/about/contact']],
+                    ['label' => 'Biography', 'url' => ['#']],
+                    ['label' => 'Materials', 'url' => ['#']],
+                ],
+            ],
         [
             'label' => 'Goods',
             'items' => [
+                ['label' => 'All categories', 'url' => '/goods/index'],
+                '<li class="divider"></li>',
                 ['label' => 'Винтажное вязаное', 'url' => '#'],
                 '<li class="divider"></li>',
                 ['label' => 'Книги', 'url' => '#'],

@@ -1,11 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Galina
- * Date: 26.03.2018
- * Time: 20:57
- */
-
 namespace app\models;
 
 use app\common\AppModel;
@@ -14,7 +7,7 @@ use yii\db\ActiveRecord;
 use yii\helpers\FileHelper;
 use yii\web\UploadedFile;
 
-class File extends AppModel//ActiveRecord //extends Model
+class File extends AppModel
 {
     public static function tableName(){
         return '{{files}}';
@@ -56,5 +49,16 @@ class File extends AppModel//ActiveRecord //extends Model
         return \Yii::$app->getBasePath() .
             DIRECTORY_SEPARATOR . 'uploads' .
             DIRECTORY_SEPARATOR . $entityType;
+    }
+
+    public function getFileRealPath($entityType, $fileName)
+    {
+        return $this->getFileEntityRealPath($entityType) .
+            DIRECTORY_SEPARATOR . $fileName;
+    }
+
+    public function getGood()
+    {
+        return $this->hasOne(Goods::class, ['id' => 'entity_id']);
     }
 }

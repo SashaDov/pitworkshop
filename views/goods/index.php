@@ -2,19 +2,28 @@
 <?php
 use yii\helpers\Html;
 use yii\widgets\LinkPager;
+use app\models\File;
 ?>
 <h2>Goods</h2>
 
 <?php foreach ($links as $link) {
-    //echo Html::img('/img/icons/img_fonts.png')
-    //echo Html::tag('div', '', ['class' => 'goods-one-block-for-good'])
+
+    $file = new File();
+    $src = $file->getFileRealPath('goods', $link->file->document);
     ?>
-    <div class="row"></div>
-    <div class= 'goods-one-block-for-good'>
-        <img src="/img/top/q3.jpg" width="100%" height="100%">
-        <h3><?= $link->title ?></h3>
-        <h4><?= $link->category ?></h4>
-        <h4><?= $link->price ?></h4>
+
+    <div class="col-md-4">
+        <div class="thumbnail">
+            <a href="#">
+                <img src="<?= $src ?>" alt="Lights" style="width:100%">
+                <div class="caption">
+                    <p>Lorem ipsum...</p>
+                </div>
+            </a>
+            <h3><?= $link->title ?></h3>
+            <h4><?= $link->category ?></h4>
+            <h4><?= $link->price ?></h4>
+        </div>
     </div>
 
 

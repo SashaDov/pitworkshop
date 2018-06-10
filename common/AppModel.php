@@ -27,8 +27,8 @@ class AppModel extends ActiveRecord
 
     public function save($runValidation = true, $attributeNames = null)
     {
-        if ($this->getAttribute('uuid') === null) {
-            $this->setAttribute('uuid', $this->uuid);
+        if ($this->getAttribute('id') === null) {
+            $this->setAttribute('id', $this->uuid);
         }
         return parent::save($runValidation, $attributeNames);
     }

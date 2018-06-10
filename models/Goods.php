@@ -55,21 +55,15 @@ class Goods extends AppModel
         ];
     }
 
-//    public function upload()
-//    {
-//        if ($this->imageFile instanceof UploadedFile) {
-//            $this->imageFile->saveAs('img/' . $this->imageFile->baseName . '.' . $this->imageFile->extension);
-//            return true;
-//        } else {
-//            return false;
-//        }
-//    }
+    public function getFiles()
+    {
+        return $this->hasMany(File::class, ['entity_id' => 'id'])
+            ->andOnCondition(['entity_type' => 'goods']);
+    }
 
-//    public function save($runValidation = true, $attributeNames = null)
-//    {
-//        $this->upload();
-//            //var_dump('dfasfasfas');die;
-//
-//        return parent::save($runValidation, $attributeNames);
-//    }
+    public function getFile()
+    {
+        return $this->hasOne(File::class, ['entity_id' => 'id'])
+            ->andOnCondition(['entity_type' => 'goods']);
+    }
 }

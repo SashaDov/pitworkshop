@@ -61,4 +61,16 @@ class ContactForm extends Model
         }
         return false;
     }
+
+    public function mail($email)
+    {
+        if ($this->validate()) {
+            $headers = 'From: webmaster@pit.studio' . "\r\n" .
+                'Reply-To: webmaster@pit.studio' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+            var_dump(mail($email, $this->subject, $this->body, $headers));die;
+            return true;
+        }
+        return false;
+    }
 }

@@ -1,3 +1,5 @@
 <pre>
 <?php
-var_dump($model);
+foreach ($files as $file) {
+    var_dump($file->id);
+}
