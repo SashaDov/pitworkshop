@@ -25,4 +25,9 @@ class Lang extends AppModel
         $this->save();
         return $this->id;
     }
+
+    public function getGood($attr = 'title')
+    {
+        return $this->hasOne(Goods::class, [$attr => 'id']);
+    }
 }

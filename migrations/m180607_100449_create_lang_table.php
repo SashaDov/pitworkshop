@@ -13,7 +13,7 @@ class m180607_100449_create_lang_table extends Migration
     public function safeUp()
     {
         $this->createTable('lang', [
-            'uuid' => $this->string(36)->notNull()->unique(),
+            'id' => $this->string(36)->notNull()->unique(),
             'entity_type' => $this->string(100),
             'en' => $this->text(),
             'ru' => $this->text(),

@@ -13,12 +13,12 @@ class m180102_203159_create_goods_table extends Migration
     public function safeUp()
     {
         $this->createTable('goods', [
-            'uuid' => $this->string(36)->notNull()->unique(),
-            'title' => $this->string(),
+            'id' => $this->string(36)->notNull()->unique(),
+            'title' => $this->string(36),
             'alias' => $this->string(),//for image
             'category' => $this->smallInteger(),
             'chapter' => $this->smallInteger(),
-            'description' => $this->text(),
+            'description' => $this->string(36),
             'price' => $this->float(),
             'work_duration' => $this->smallInteger(),
             'date_start' => $this->timestamp(),
@@ -26,7 +26,7 @@ class m180102_203159_create_goods_table extends Migration
             'date_end' => $this->timestamp(),
             'materials' => $this->text(),
             'tags' => $this->text(),
-            'service_recomendation' => $this->text(),
+            'service_recomendation' => $this->string(36),
             'size' => $this->string(),
         ]);
     }

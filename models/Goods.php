@@ -55,15 +55,46 @@ class Goods extends AppModel
         ];
     }
 
+    /**
+     * Получить все файлы, принадлежащие товару
+     * @return \yii\db\ActiveQuery
+     */
     public function getFiles()
     {
         return $this->hasMany(File::class, ['entity_id' => 'id'])
             ->andOnCondition(['entity_type' => 'goods']);
     }
 
+    /**
+     * Получить любой файл, принадлежащий определенному товару
+     * @return \yii\db\ActiveQuery
+     */
     public function getFile()
     {
         return $this->hasOne(File::class, ['entity_id' => 'id'])
             ->andOnCondition(['entity_type' => 'goods']);
+    }
+
+    /**
+     * Атрибуты, которые в товарах переводятся на языки
+     * @return array
+     */
+    public function langAttributes()
+    {
+        return [
+            'title',
+            'description',
+            'service_recomendation',
+        ];
+    }
+
+    /**
+     * Получить информацию на соответствующем языке определенного атрибута
+     * @param string $attr
+     * @return \yii\db\ActiveQuery
+     */
+    public function getLang($attr = 'title')
+    {
+        return $this->hasOne(Lang::class, ['id' => $attr]);
     }
 }

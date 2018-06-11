@@ -4,6 +4,7 @@ namespace app\controllers;
 use app\models\File;
 use app\models\Goods;
 use app\models\Lang;
+use function GuzzleHttp\Psr7\str;
 use yii\data\Pagination;
 use yii\filters\AccessControl;
 use yii\web\Controller;
@@ -84,7 +85,15 @@ class GoodsController extends Controller
     {
         $model = Goods::findOne($id);
         $files = $model->files;
-//        $langs = $model->langs;
-        return $this->render('show', ['model' => $model, 'files' => $files]);
+        $srcs = [];
+        foreach ($files as $file) {
+            $f = new File();
+            $srcs[] = $f->getFileRealPath($file->entity_type, $file->document);
+        }
+        $langs = [];
+        foreach ($model->langAttributes() as $attribute) {
+            $langs[] = $model->getLang($attribute)->one();
+        }
+        return $this->render('show', ['model' => $model, 'srcs' => $srcs, 'langs' => $langs]);
     }
 }

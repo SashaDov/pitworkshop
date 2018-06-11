@@ -47,13 +47,16 @@ class File extends AppModel
     public function getFileEntityRealPath($entityType)
     {
         return \Yii::$app->getBasePath() .
-            DIRECTORY_SEPARATOR . 'uploads' .
+            DIRECTORY_SEPARATOR . 'web' .
+            DIRECTORY_SEPARATOR . 'img' .
             DIRECTORY_SEPARATOR . $entityType;
     }
 
     public function getFileRealPath($entityType, $fileName)
     {
-        return $this->getFileEntityRealPath($entityType) .
+        return \Yii::getAlias('@web') .
+            DIRECTORY_SEPARATOR . 'img' .
+            DIRECTORY_SEPARATOR . $entityType .
             DIRECTORY_SEPARATOR . $fileName;
     }
 
