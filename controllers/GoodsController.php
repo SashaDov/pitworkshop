@@ -42,7 +42,7 @@ class GoodsController extends Controller
             'totalCount' => $countQuery->count(),
         ]);
 
-        $links = $query->orderBy('title')
+        $links = $query->orderBy('alias')
             ->offset($pagination->offset)
             ->limit($pagination->limit)
             ->all();
