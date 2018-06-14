@@ -1,0 +1,20 @@
+.thumb img {
+    -webkit-filter: sepia(0);
+    filter: none;
+    border-radius: 5px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px;
+    width: 300px;
+    /*height: 200px;*/
+
+}
+
+.thumb img:hover {
+    -webkit-filter: sepia(1);
+    filter: sepia(1);
+}
+
+.thumb {
+    padding: 5px;
+}

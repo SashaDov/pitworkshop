@@ -44,8 +44,10 @@ foreach ($links as $link) {
                     ?>
             </div>
             <div class="btn-group">
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-card">View</button>
-                    <button type="button" class="btn btn-sm btn-outline-secondary btn-card">Basket</button>
+                <?php
+                echo Html::a(Html::button('View', ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
+                echo Html::a(Html::button('Basket', ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
+                ?>
             </div>
             <small class="text-muted"><?= $link->price ?></small>
         </div>
