@@ -337,3 +337,8 @@ h3, h4 {
 .pagination > li > a {
     color: black;
 }
+
+.caption {
+    padding-bottom: 20px;
+    color: #0f0f0f;
+}
