@@ -12,16 +12,14 @@ $language = \Yii::$app->language;
 if (!Yii::$app->user->isGuest) {
     echo Html::beginTag('div', ['class' => 'row']);
     echo Html::a(Html::button('Create good', ['class' => 'button-panel-own']), '/goods/create');
-    echo Html::a(Html::button('Edit good', ['class' => 'button-panel-own']), '/goods/create');
-    echo Html::a(Html::button('Delete good', ['class' => 'button-panel-own']), '/goods/create');
-    echo Html::a(Html::button('Preview good', ['class' => 'button-panel-own']), '/goods/create');
     echo Html::endTag('div');
 }
 
+echo Html::beginTag('div', ['class' => 'row']);
 foreach ($links as $link) {
 
-    $file = new File();
-    $src = $file->getFileRealPath($link->file->entity_type, $link->file->document);
+    //$file = new File();
+    $src = $link->file->getFileRealPath();
     $src = str_replace('\\', '/', $src); //  /img/top/q1.jpg
 
     $title = $link->lang->{$language};
@@ -49,13 +47,19 @@ foreach ($links as $link) {
                 echo Html::a(Html::button('Basket', ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
                 ?>
             </div>
-            <small class="text-muted"><?= $link->price ?></small>
+            <small class="text-muted"><?= $link->price . ' RUB' ?></small>
         </div>
     </div>
 
 
 <?php
 }
+echo Html::endTag('div');
 //прикрутить js, где будет открываться инфа по сделкам, сами сделки - ссылки
 ?>
+
+<div class="row">
+    <div class="col-sm-4">
 <?= LinkPager::widget(['pagination' => $pagination]) ?>
+    </div>
+</div>

@@ -324,3 +324,16 @@ h3, h4 {
     padding-left: 10px;
     padding-bottom: 20px;
 }
+
+#goods-date_start {
+    color: black;
+}
+
+.pagination > .active > a, .pagination > .active > a:hover {
+    background-color: #cea47c;
+    border-color: white;
+}
+
+.pagination > li > a {
+    color: black;
+}

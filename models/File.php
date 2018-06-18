@@ -52,12 +52,12 @@ class File extends AppModel
             DIRECTORY_SEPARATOR . $entityType;
     }
 
-    public function getFileRealPath($entityType, $fileName)
+    public function getFileRealPath()
     {
         return \Yii::getAlias('@web') .
             DIRECTORY_SEPARATOR . 'img' .
-            DIRECTORY_SEPARATOR . $entityType .
-            DIRECTORY_SEPARATOR . $fileName;
+            DIRECTORY_SEPARATOR . $this->entity_type .
+            DIRECTORY_SEPARATOR . $this->document;
     }
 
     public function getGood()

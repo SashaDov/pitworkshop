@@ -18,6 +18,7 @@ class m180102_203159_create_goods_table extends Migration
             'alias' => $this->string(),//for image
             'category' => $this->smallInteger(),
             'chapter' => $this->smallInteger(),
+            'rubric' => $this->smallInteger(),
             'description' => $this->string(36),
             'price' => $this->float(),
             'work_duration' => $this->smallInteger(),

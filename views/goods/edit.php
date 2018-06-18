@@ -30,11 +30,11 @@ $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?
     'dateFormat' => 'yyyy-MM-dd',
 ])
 ?>
-<?= $form->field($goods_model, 'documents[]', ['enableClientValidation' => true])->fileInput(['multiple' => true]) ?>
 <div>
-    <button class="button-panel-own" type="submit">Create</button><?php
+    <button class="button-panel-own" type="submit">Update</button>
+    <?php
     echo Html::a(Html::button('Cancel',
-        ['class' => 'button-panel-own']), '/goods/index');
+        ['class' => 'button-panel-own']), ['/goods/show', 'id' => $goods_model->id]);
     ?>
 </div>
 <?php $form = ActiveForm::end();?>

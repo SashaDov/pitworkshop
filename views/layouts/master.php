@@ -18,43 +18,6 @@ AppAsset::register($this);
     <?= Html::csrfMetaTags() ?>
     <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
-<!--
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
-
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            // Initialize Tooltip
-            $('[data-toggle="tooltip"]').tooltip();
-
-            // Add smooth scrolling to all links in navbar + footer link
-            $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
-
-                // Make sure this.hash has a value before overriding default behavior
-                if (this.hash !== "") {
-
-                    // Prevent default anchor click behavior
-                    event.preventDefault();
-
-                    // Store hash
-                    var hash = this.hash;
-
-                    // Using jQuery's animate() method to add smooth page scroll
-                    // The optional number (900) specifies the number of milliseconds it takes to scroll to the specified area
-                    $('html, body').animate({
-                        scrollTop: $(hash).offset().top
-                    }, 900, function(){
-
-                        // Add hash (#) to URL when done scrolling (default click behavior)
-                        window.location.hash = hash;
-                    });
-                } // End if
-            });
-        });
-    </script>
--->
     <?php $this->head() ?>
 </head>
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="50">
@@ -83,21 +46,20 @@ echo Nav::widget([
         [
             'label' => 'Goods',
             'items' => [
-                ['label' => 'All categories', 'url' => '/goods/index'],
+                ['label' => Yii::t('app', 'All categories'), 'url' => '/goods/index'],
                 '<li class="divider"></li>',
-                ['label' => 'Винтажное вязаное', 'url' => '#'],
+                ['label' => Yii::t('app', 'Knitted'), 'url' => ['/goods/index', 'category' => '1']],
                 '<li class="divider"></li>',
-                ['label' => 'Книги', 'url' => '#'],
-                ['label' => 'Софтбуки', 'url' => '#'],
-                ['label' => 'Обложки на книги', 'url' => '#'],
+                ['label' => \Yii::t('app', 'Books'), 'url' => ['/goods/index', 'category' => '2']],
+                ['label' => \Yii::t('app', 'Softbooks'), 'url' => ['/goods/index', 'category' => '3']],
+                ['label' => \Yii::t('app', 'Stationery'), 'url' => ['/goods/index', 'category' => '4']],
                 '<li class="divider"></li>',
-                ['label' => 'Сумки и акссесуары', 'url' => '#'],
-                ['label' => 'Канцелярия', 'url' => '#'],
-                ['label' => 'Шкатулки', 'url' => '#'],
-                '<li class="divider"></li>',
+                ['label' => \Yii::t('app', 'Handbags'), 'url' => ['/goods/index', 'category' => '5']],
+                ['label' => \Yii::t('app', 'Caskets and boxes'), 'url' => ['/goods/index', 'category' => '6']],
+                ['label' => \Yii::t('app', 'Accessories'), 'url' => ['/goods/index', 'category' => '7']],
+//                '<li class="divider"></li>',
                 //['label' => 'Level 1 - Dropdown B', 'url' => '#'],
                 //'<li class="dropdown-header">Dropdown Header</li>',
-                ['label' => 'Вне категории', 'url' => '#'],
             ],
         ],
         [
@@ -169,23 +131,26 @@ NavBar::end();
                 'For SALE' => '#',//'/goods/for-sale.php',
             ];
             echo Html::ul($items, ['item' => function ($item, $index) {
-                $link = Html::a($index, $item);
+                $link = Html::a(Yii::t('app', $index), $item);
                 return "<li>{$link}</li>";
             }]);
             ?>
         </div>
         <div class="col-sm-4">
             <?php
-            echo Html::ul([
-                'Вязаное',
-                'Книги',
-                'Софтбуки',
-                'Сумки',
-                'Пеналы',
-                'Эзотерика',
-                'Научно-публицистическое',
-                'Сувениры и подарки',
-            ]);
+            $items = [
+                'In stock' => ['/goods/index', 'chapter' => '1'],
+                'For example' => ['/goods/index', 'chapter' => '2'],
+                'Esoteric' => ['/goods/index', 'rubric' => '1'],
+                'Serials' => ['/goods/index', 'rubric' => '2'],
+                'Movies' => ['/goods/index', 'rubric' => '3'],
+                'Harry Potter' => ['/goods/index', 'rubric' => '4'],
+                'Souvenirs and gifts' => ['/goods/index', 'rubric' => '5'],
+            ];
+            echo Html::ul($items, ['item' => function ($item, $index) {
+                $link = Html::a(Yii::t('app', $index), $item);
+                return "<li>{$link}</li>";
+            }]);
             ?>
         </div>
 <!--        <div class="col-md-3">-->

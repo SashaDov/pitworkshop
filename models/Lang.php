@@ -26,6 +26,13 @@ class Lang extends AppModel
         return $this->id;
     }
 
+    public function editRecord($record)
+    {
+        $language = \Yii::$app->language;
+        $this->{$language} = $record;
+        $this->save();
+    }
+
     public function getGood($attr = 'title')
     {
         return $this->hasOne(Goods::class, [$attr => 'id']);
