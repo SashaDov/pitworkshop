@@ -36,15 +36,15 @@ echo Nav::widget([
     'options' => ['class' => 'navbar-nav navbar-right'],
     'items' => [
             [
-                'label' => 'About',
+                'label' => \Yii::t('app', 'About'),
                 'items' => [
-                    ['label' => 'Contacts', 'url' => ['/about/contact']],
-                    ['label' => 'Biography', 'url' => ['#']],
-                    ['label' => 'Materials', 'url' => ['#']],
+                    ['label' => \Yii::t('app', 'Contacts'), 'url' => ['/about/contact']],
+                    ['label' => \Yii::t('app', 'Biography'), 'url' => ['#']],
+                    ['label' => \Yii::t('app', 'Materials'), 'url' => ['#']],
                 ],
             ],
         [
-            'label' => 'Goods',
+            'label' => \Yii::t('app', 'Goods'),
             'items' => [
                 ['label' => Yii::t('app', 'All categories'), 'url' => '/goods/index'],
                 '<li class="divider"></li>',

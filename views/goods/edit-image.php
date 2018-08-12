@@ -12,9 +12,10 @@ echo $title;
 $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);?>
 <?= $form->field($model, 'documents[]')->fileInput(['multiple' => true])->label(false) ?>
 <div>
-    <button class="button-panel-own" type="submit">Add files</button>
     <?php
-    echo Html::a(Html::button('Cancel',
+    echo Html::submitButton(\Yii::t('app', 'Add files'),
+        ['class' => 'button-panel-own']);
+    echo Html::a(Html::button(\Yii::t('app', 'Cancel'),
         ['class' => 'button-panel-own']), ['/goods/show', 'id' => $model->id]);
     ?>
 </div>
@@ -30,7 +31,7 @@ foreach ($srcs as $id => $src) {
     <a data-fancybox="gallery" href="<?= $src ?>">
         <img class="img-responsive" style="height: 200px" src="<?= $src ?>" alt="">
         <?php
-        echo Html::a(Html::button('Delete file',
+        echo Html::a(Html::button(\Yii::t('app', 'Delete file'),
             ['class' => 'btn btn-sm btn-outline-secondary btn-card',
                 'style' => 'border: 1px solid white;']),
             ['/file/delete-file', 'id' => $id]);

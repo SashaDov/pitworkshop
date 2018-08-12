@@ -151,8 +151,15 @@ class Goods extends AppModel
     public function attributeLabels()
     {
         return [
-            'title' => \Yii::t('app', 'Title'),
-            'description' => \Yii::t('app', 'Description'),
+            'alias' => \Yii::t('app', 'Alias'),
+            'chapter' => \Yii::t('app', 'Chapter'),
+            'rubric' => \Yii::t('app', 'Rubric'),
+            'category' => \Yii::t('app', 'Category'),
+            'price' => \Yii::t('app', 'Price'),
+            'size' => \Yii::t('app', 'Size'),
+            'work_duration' => \Yii::t('app', 'Work duration'),
+            'date_start' => \Yii::t('app', 'Start date'),
+            'documents' => \Yii::t('app', 'Files loading'),
         ];
     }
 

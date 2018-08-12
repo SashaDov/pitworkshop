@@ -4,14 +4,14 @@ use yii\widgets\LinkPager;
 use app\models\File;
 ?>
 
-<h2>Goods</h2>
+<h2><?= \Yii::t('app', 'Goods') ?> </h2>
 
 <?php
 $language = \Yii::$app->language;
 
 if (!Yii::$app->user->isGuest) {
     echo Html::beginTag('div', ['class' => 'row']);
-    echo Html::a(Html::button('Create good', ['class' => 'button-panel-own']), '/goods/create');
+    echo Html::a(Html::button(\Yii::t('app', 'Create good'), ['class' => 'button-panel-own']), '/goods/create');
     echo Html::endTag('div');
 }
 
@@ -43,8 +43,8 @@ foreach ($links as $link) {
             </div>
             <div class="btn-group">
                 <?php
-                echo Html::a(Html::button('View', ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
-                echo Html::a(Html::button('Basket', ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
+                echo Html::a(Html::button(\Yii::t('app', 'View'), ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
+                echo Html::a(Html::button(\Yii::t('app', 'Basket'), ['class' => 'btn btn-sm btn-outline-secondary btn-card']), ['/goods/show', 'id' => $link->id]);
                 ?>
             </div>
             <small class="text-muted"><?= $link->price . ' RUB' ?></small>

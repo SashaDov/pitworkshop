@@ -33,11 +33,11 @@ $config = [
             'useFileTransport' => false,
             'transport' => [
                 'class' => 'Swift_SmtpTransport',
-                'host' => 'imap.yandex.ru',
-                'port' => 993,
-                'username' => 'pit.cogger@yandex.ru',
-                'password' => 'gretta80',
-                'encryption' => 'ssl'
+                'host' => 'smtp.gmail.com',
+                'port' => 587,
+                'username' => 'sashakovalenko742@gmail.com',
+                'password' => 'Rjcvjc742',
+                'encryption' => 'tls'
             ],
         ],
         'log' => [
