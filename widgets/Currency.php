@@ -1,13 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Galina
- * Date: 10.04.2018
- * Time: 18:04
- */
-
 namespace app\widgets;
-
 
 class Currency
 {
